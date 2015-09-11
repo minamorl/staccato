@@ -3,6 +3,18 @@ from json import JSONDecoder
 from staccato import utils
 
 
+def _define_endpoint(method, endpoint, id=False):
+    if id:
+        def fn(self, id, **kwargs):
+            url = "{}/{}.json".format(endpoint, id)
+            self.request(method, url, params=kwargs)
+        return fn
+    else:
+        def fn(self, **kwargs):
+            url = "{}.json".format(endpoint)
+            self.request(method, url, params=kwargs)
+        return fn
+
 class Twitter():
     API = "https://api.twitter.com/1.1/"
 
@@ -51,6 +63,8 @@ class Twitter():
     def remove_user(self, user_id):
         return self.request("post", "friendships/destroy.json", params={"user_id": user_id})
 
+    statuses_update = _define_endpoint("post", "statuses/update")
+    statuses_destroy = _define_endpoint("post", "statuses/destroy", True)
 
 class TwitterAuthException(Exception):
     pass
