@@ -1,5 +1,5 @@
-# staccato
-Twitter api wrapper for python 3
+# ![logo](./staccato.png) staccato
+Twitter api wrapper for Python 3
 
 ## Installation
 
