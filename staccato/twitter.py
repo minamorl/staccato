@@ -7,12 +7,12 @@ def _define_endpoint(method, endpoint, id=False):
     if id:
         def fn(self, id, **kwargs):
             url = "{}/{}.json".format(endpoint, id)
-            self.request(method, url, params=kwargs)
+            return self.request(method, url, params=kwargs)
         return fn
     else:
         def fn(self, **kwargs):
             url = "{}.json".format(endpoint)
-            self.request(method, url, params=kwargs)
+            return self.request(method, url, params=kwargs)
         return fn
 
 class Twitter():
@@ -47,11 +47,6 @@ class Twitter():
 
         return parsed
 
-    def get_followers(self, screen_name, count=0):
-        return self.request("get", "followers/ids.json", params={"screen_name": screen_name, "count": count})
-
-    def get_followings(self, screen_name, count=0):
-        return self.request("get", "friends/ids.json", params={"screen_name": screen_name, "count": count})
 
     def lookup(self, user_ids):
         result=[]
@@ -63,8 +58,10 @@ class Twitter():
     def remove_user(self, user_id):
         return self.request("post", "friendships/destroy.json", params={"user_id": user_id})
 
-    statuses_update = _define_endpoint("post", "statuses/update")
+    statuses_update  = _define_endpoint("post", "statuses/update")
     statuses_destroy = _define_endpoint("post", "statuses/destroy", True)
+    get_followers    = _define_endpoint("get", "followers/ids")
+    get_followings   = _define_endpoint("get", "friends/ids")
 
 class TwitterAuthException(Exception):
     pass
