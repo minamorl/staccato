@@ -6,8 +6,7 @@ from staccato import utils
 class Twitter():
     API = "https://api.twitter.com/1.1/"
 
-    def __init__(self, conf, session=None):
-        self.conf = conf
+    def __init__(self, session=None):
         self.session = session
 
     def auth(self, consumer_key, consumer_secret, access_token_key, access_token_secret):
