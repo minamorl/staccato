@@ -1,22 +1,27 @@
 import os
 import pytest
 from configparser import ConfigParser
+import os
 from staccato.twitter import Twitter, TwitterAuthException
 
 
-@pytest.fixture
-def conf():
-    conf = ConfigParser()
-    conf.read(os.path.expanduser("~/.staccato.conf"))
-    conf = conf['OAuth1Settings']
+def _conf():
+    prefix = "STACCATO_"
+    conf = {}
+    keys = list(item for item in list(os.environ) if item.startswith(prefix))
+    print(keys)
+    
+    for key in keys:
+        conf[key.replace(prefix, "")] = os.environ[key]
     return conf
 
+@pytest.fixture
+def conf():
+    return _conf()
 
 @pytest.fixture
 def api():
-    conf = ConfigParser()
-    conf.read(os.path.expanduser("~/.staccato.conf"))
-    conf = conf['OAuth1Settings']
+    conf = _conf()
     api = Twitter()
     api.auth(conf["CONSUMER_KEY"],
              conf["CONSUMER_SECRET"],
