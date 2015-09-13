@@ -1,6 +1,8 @@
 # ![logo](./staccato.png) staccato
 Twitter API wrapper for Python 3
 
+[![Circle CI](https://circleci.com/gh/minamorl/staccato.svg?style=svg)](https://circleci.com/gh/minamorl/staccato)
+
 ## Installation
 
     pip install staccato
