@@ -6,7 +6,6 @@ dependencies:
   pre:
     - pip install tox --upgrade
     - pip install --upgrade setuptools
-    # - pip uninstall staccato -y || true
 
 test:
   override:
