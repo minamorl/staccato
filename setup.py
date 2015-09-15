@@ -25,7 +25,7 @@ class Tox(TestCommand):
 
 setup(
     name="staccato",
-    version="0.0.5",
+    version="0.0.6",
     packages=find_packages(),
     install_requires = ['requests', 'requests_oauthlib'],
     author = "minamorl",
