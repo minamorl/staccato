@@ -26,6 +26,23 @@ print(response)
 api.statuses_destroy(response['id'])
 ```
 
+PIN-based auth (>=0.0.6)
+
+```python
+api = staccato.startup()
+api.auth(consumer_key, consumer_secret)
+
+url = api.generate_auth_url()
+print(url)
+pin = raw_input()
+
+print(api.pin_auth(pin))
+
+response = api.statuses_update(status="Hello, world!")
+print(response)
+api.statuses_destroy(response['id'])
+```
+
 ## Available Endpoints
 
 - GET statuses/mentions_timeline
