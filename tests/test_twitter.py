@@ -16,3 +16,4 @@ def test_get_followers(api, conf):
 
 def test_get_followings(api, conf):
     print(api.get_followings(screen_name=conf["SCREEN_NAME"]))
+
