@@ -45,8 +45,4 @@ api.statuses_destroy(response['id'])
 
 ## TODO:
 
-- POST media/upload chunked
-- GET geo/id/:place_id
-- GET geo/reverse_geocode
-- GET geo/search
-- POST geo/place
+- utility function of POST media/upload (chunked) for user convinience.
