@@ -38,12 +38,10 @@ class Twitter():
         fetch_response = self.session.fetch_request_token(request_token_url)
         return self.session.authorization_url(base_authorization_url)
 
-
     def pin_auth(self, pin):
         access_token_url = 'https://api.twitter.com/oauth/access_token'
         oauth_response = self.session.fetch_access_token(access_token_url, verifier=pin)
         return oauth_response
-
 
     def request(self, method='get', endpoint='', **kwargs):
 
@@ -158,6 +156,10 @@ class Twitter():
     help_tos = _define_endpoint("get", "help/tos")
     trends_closest = _define_endpoint("get", "trends/closest")
     users_report_spam = _define_endpoint("post", "users/report_spam")
+    geo_id_place_id = _define_endpoint("get", "geo/id", True)
+    geo_reverse_geocode = _define_endpoint("get", "geo/reverse_geocode")
+    geo_search = _define_endpoint("get", "geo/search")
+    geo_place = _define_endpoint("post", "geo/place")
 
 
 class TwitterAuthException(Exception):
