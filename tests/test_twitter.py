@@ -13,9 +13,8 @@ def test_account_verify_credentials(api):
 
 
 def test_get_followers(api):
-    print(api.get_followers(screen_name=os.environ["SCREEN_NAME"]))
+    print(api.followers_ids(screen_name=os.environ["SCREEN_NAME"]))
 
 
 def test_get_followings(api):
-    print(api.get_followings(screen_name=os.environ["SCREEN_NAME"]))
-
+    print(api.friends_ids(screen_name=os.environ["SCREEN_NAME"]))

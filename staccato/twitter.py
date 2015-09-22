@@ -66,12 +66,6 @@ class Twitter():
             result.extend(r)
         return result
 
-    def remove_user(self, user_id):
-        return self.request("post", "friendships/destroy.json", params={"user_id": user_id})
-
-    get_followers = _define_endpoint("get", "followers/ids")
-    get_followings = _define_endpoint("get", "friends/ids")
-
     statuses_mentions_timeline = _define_endpoint("get", "statuses/mentions_timeline")
     statuses_user_timeline = _define_endpoint("get", "statuses/user_timeline")
     statuses_home_timeline = _define_endpoint("get", "statuses/home_timeline")
