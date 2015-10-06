@@ -1,5 +1,6 @@
 import pytest
 import os
+import itertools
 
 
 def test_update_status(api):
@@ -18,3 +19,7 @@ def test_get_followers(api):
 
 def test_get_followings(api):
     print(api.friends_ids(screen_name=os.environ["SCREEN_NAME"]))
+
+def test_user_stream(api):
+    for parsed in itertools.islice(api.user_stream(), 10):
+        print(parsed)

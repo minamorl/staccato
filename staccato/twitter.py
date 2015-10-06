@@ -155,6 +155,13 @@ class Twitter():
     geo_search = _define_endpoint("get", "geo/search")
     geo_place = _define_endpoint("post", "geo/place")
 
+    def user_stream(self):
+        r = self.session.get('https://userstream.twitter.com/1.1/user.json', stream=True)
+        decoder = JSONDecoder()
+        for line in r.iter_lines():
+            if line: 
+                yield decoder.decode(line.decode())
+
 
 class TwitterAuthException(Exception):
     pass
