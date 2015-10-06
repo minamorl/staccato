@@ -24,6 +24,10 @@ print(response)
 
 # And you can also do this...
 api.statuses_destroy(response['id'])
+
+# Userstream. (>=0.1.2)
+for parsed in api.user_stream():
+  print(parsed) # Decoded json data
 ```
 
 PIN-based auth (>=0.0.6)
