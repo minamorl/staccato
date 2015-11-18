@@ -2,8 +2,6 @@ from requests_oauthlib import OAuth1Session
 from json import JSONDecoder
 from staccato import utils
 
-__all__ = ["Twitter", "TwitterAuthException"]
-
 def _define_endpoint(method, endpoint, id=False):
     if id:
         def fn(self, id, **kwargs):
