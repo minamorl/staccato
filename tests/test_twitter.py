@@ -16,5 +16,4 @@ def test_get_followings(api):
 
 
 def test_user_stream(api):
-    for parsed in itertools.islice(api.user_stream(), 10):
-        pass
+    next(api.user_stream())
