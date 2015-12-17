@@ -1,6 +1,8 @@
 # ![logo](./staccato.png) staccato
 Twitter API wrapper for Python 3
 
+[![PyPI version](https://badge.fury.io/py/staccato.svg)](https://badge.fury.io/py/staccato)
+
 [![Circle CI](https://circleci.com/gh/minamorl/staccato.svg?style=svg)](https://circleci.com/gh/minamorl/staccato)
 
 ## Installation
