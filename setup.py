@@ -29,6 +29,7 @@ setup(
     packages=find_packages(),
     install_requires = ['requests', 'requests_oauthlib'],
     author = "minamorl",
+    author_email = "minamorl@minamorl.com",
     description = "Twitter API wrapper for python 3",
     tests_require=['tox'],
     cmdclass={'test': Tox},
