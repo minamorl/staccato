@@ -1,13 +1,18 @@
 import os
-import pytest
 import staccato
 
 
-@pytest.fixture
-def api():
+
+def test__define_endpoint():
     api = staccato.startup()
+
     api.auth(os.environ["CONSUMER_KEY"],
              os.environ["CONSUMER_SECRET"],
              os.environ["ACCESS_TOKEN_KEY"],
              os.environ["ACCESS_TOKEN_SECRET"])
-    return api
+    
+    assert True == True # dummy
+    
+    #  response = api.statuses_update(status = "nyaa")
+    #  api.statuses_destroy(response['id'])
+    #  assert api.media_upload() == None

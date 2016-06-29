@@ -2,22 +2,26 @@ from requests_oauthlib import OAuth1Session
 from json import JSONDecoder
 from staccato import utils
 
+API = "https://api.twitter.com/1.1/"
+
 def _define_endpoint(method, endpoint, id=False):
+
     if id:
         def fn(self, id, **kwargs):
-            url = "{}/{}.json".format(endpoint, id)
+            url = API +"{}/{}.json".format(endpoint, id)
             return self.request(method, url, params=kwargs)
         return fn
     else:
         def fn(self, **kwargs):
-            url = "{}.json".format(endpoint)
+            if endpoint.startswith('https://'):
+                url = endpoint
+            else:
+                url = API + "{}.json".format(endpoint)
             return self.request(method, url, params=kwargs)
         return fn
 
 
 class Twitter():
-    API = "https://api.twitter.com/1.1/"
-
     def __init__(self, session=None):
         self.session = session
 
@@ -42,7 +46,7 @@ class Twitter():
         oauth_response = self.session.fetch_access_token(access_token_url, verifier=pin)
         return oauth_response
 
-    def request(self, method='get', endpoint='', **kwargs):
+    def request(self, method='get', url='', **kwargs):
 
         def _parsed(s):
             try:
@@ -53,8 +57,7 @@ class Twitter():
         if self.session is None:
             raise TwitterAuthException()
 
-        _url = Twitter.API + endpoint
-        parsed = _parsed(self.session.request(method, _url, **kwargs).text)
+        parsed = _parsed(self.session.request(method, url, **kwargs).text)
 
         return parsed
 
@@ -78,7 +81,7 @@ class Twitter():
     statuses_oembed = _define_endpoint("get", "statuses/oembed")
     statuses_retweeters_ids = _define_endpoint("get", "statuses/retweeters/ids")
     statuses_lookup = _define_endpoint("get", "statuses/lookup")
-    media_upload = _define_endpoint("post", "media/upload")
+    media_upload = _define_endpoint("post", "https://upload.twitter.com/1.1/media/upload.json")
     direct_messages_sent = _define_endpoint("get", "direct_messages/sent")
     direct_messages_show = _define_endpoint("get", "direct_messages/show")
     search_tweets = _define_endpoint("get", "search/tweets")
